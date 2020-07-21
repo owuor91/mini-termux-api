@@ -1,6 +1,7 @@
 from flask_restful import Resource
 from models.car_model import CarModel
 from flask import request
+import json
 
 class Car(Resource):
     def get(self, id=None):
@@ -14,10 +15,11 @@ class Car(Resource):
 
 
     def post(self):
-        params = request.args
+        params = json.loads(request.data)
         make= params.get('make')
         model= params.get('model')
         registration = params.get('registration')
+        print(params)
 
         car = CarModel(make,model,registration)
 
