@@ -5,6 +5,7 @@ from resources.car import Car
 import os
 from os import getenv
 from dotenv import load_dotenv
+from flask_migrate import Migrate
 
 load_dotenv()
 
@@ -12,6 +13,8 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+migrate = Migrate(app, db)
 
 api = Api(app)
 
