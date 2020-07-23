@@ -3,10 +3,14 @@ from flask_restful import Api
 from db import db
 from resources.car import Car
 import os
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 api = Api(app)
