@@ -2,6 +2,7 @@ from flask import Flask,request
 from flask_restful import Api
 from db import db
 from resources.car import Car
+from resources.owner import Owner
 import os
 from os import getenv
 from dotenv import load_dotenv
@@ -38,6 +39,7 @@ def greet():
             'resp': 'Hello %s'%(name)},200
 
 api.add_resource(Car, '/cars', '/cars/<int:id>')
+api.add_resource(Owner, '/owners', '/owners/<int:id>')
 
 
 if __name__ == "__main__":
